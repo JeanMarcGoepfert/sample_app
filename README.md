@@ -1,0 +1,1 @@
+A Simple Ruby On Rails App following Michael Hartl's book - Learn Web Development with Rails
