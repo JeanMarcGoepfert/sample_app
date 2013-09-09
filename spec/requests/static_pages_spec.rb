@@ -16,7 +16,7 @@ describe "Static pages" do
 
     it "should not have a custom page title" do
       visit root_path
-      expect(page).not_to have_title('| Home')
+      expect(page).not_to have_title('Home')
     end
   end
 
