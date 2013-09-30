@@ -80,13 +80,7 @@ describe "User pages" do
       let(:new_name) { "New Name" }
       let(:new_email) { "new@example.com" }
 
-      before do
-        fill_in "Name",             with: new_name
-        fill_in "Email",            with: new_email
-        fill_in "Password",         with: user.password
-        fill_in "Confirm Password", with: user.password
-        click_button "Save changes"
-      end
+      before { valid_edit }
 
       it { should have_title(new_name) }
       it { should have_selector('div.alert.alert-success') }

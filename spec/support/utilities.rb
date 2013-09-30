@@ -6,6 +6,14 @@ def valid_signin(user)
     click_button "Sign in"
 end
 
+def valid_edit
+    fill_in "Name",             with: new_name
+    fill_in "Email",            with: new_email
+    fill_in "Password",         with: user.password
+    fill_in "Confirm Password", with: user.password
+    click_button "Save changes"
+end
+
 def valid_signup(user)
     fill_in "Name",         with: "Example User"
     fill_in "Email",        with: "user@example.com"
