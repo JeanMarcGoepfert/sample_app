@@ -33,6 +33,39 @@ describe "Static pages" do
           expect(page).to have_selector("li##{item.id}", text: item.content)
         end
       end
+
+      it "should have correct micropost count" do
+        expect(page).to have_content("2 microposts")
+      end
+
+      describe "with lots of posts" do
+
+        before do
+          40.times { FactoryGirl.create(:micropost, user: user, content: "Lorem Ipsum") }
+          sign_in user
+          visit root_path
+        end
+
+        it "should have pagination" do
+          expect(page).to have_selector("div.pagination")
+        end
+      end
+
+      describe "viewing anothe users posts" do
+
+        let(:user2) { FactoryGirl.create(:user) }
+        before do
+          FactoryGirl.create(:micropost, user: user2, content: "Lorem Ipsum")
+          FactoryGirl.create(:micropost, user: user2, content: "Dolor sit amet")
+          sign_in user
+          visit user_path(user2)
+        end
+
+        it "should not have delete link" do
+          expect(page).to have_content(user2.name)
+          expect(page).not_to have_selector("a.delete-micropost")
+        end
+      end
     end
   end
 
