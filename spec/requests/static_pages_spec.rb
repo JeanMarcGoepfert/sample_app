@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "Static pages" do
 
+  subject { page }
+
   describe "Home page" do
 
     it "should have the h1 'Sample App'" do
@@ -34,8 +36,9 @@ describe "Static pages" do
         end
       end
 
-      describe "follower/following count" do
+      describe "follower/following counts" do
         let(:other_user) { FactoryGirl.create(:user) }
+
         before do
           other_user.follow!(user)
           visit root_path
@@ -62,7 +65,7 @@ describe "Static pages" do
         end
       end
 
-      describe "viewing anothe users posts" do
+      describe "viewing another users posts" do
 
         let(:user2) { FactoryGirl.create(:user) }
         before do
